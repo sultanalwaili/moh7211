@@ -16,6 +16,7 @@
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            position: relative;
         }
 
         .header {
@@ -28,35 +29,22 @@
 
         .header .logo-container {
             position: relative;
-            width: 270px;
-            height: 270px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(145deg, #6dd5ed, #2a5298);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-            animation: pulseGlow 2s infinite, rotateLogo 20s linear infinite;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: rotateLogo 20s linear infinite;
         }
 
         .header .logo-container img {
-            width: 220px;
-            height: 220px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             border: 5px solid white;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
-                            0 0 40px rgba(255, 255, 255, 0.3),
-                            0 0 60px rgba(255, 255, 255, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
-                            0 0 50px rgba(255, 255, 255, 0.6),
-                            0 0 70px rgba(255, 255, 255, 0.4);
-            }
         }
 
         @keyframes rotateLogo {
@@ -69,7 +57,7 @@
         }
 
         .header h1 {
-            font-size: 45px;
+            font-size: 32px;
             color: #f8f9fa;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             margin-top: 15px;
@@ -79,50 +67,104 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            gap: 50px;
+            gap: 30px;
+            flex-wrap: wrap;
             margin-top: 20px;
         }
 
         .box {
             text-align: center;
             background: linear-gradient(145deg, #2a5298, #1e3c72);
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
-            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5),
-                        -10px -10px 20px rgba(255, 255, 255, 0.2);
-            width: 350px;
-            transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
-            animation: floatEffect 6s ease-in-out infinite;
-        }
-
-        @keyframes floatEffect {
-            0%, 100% {
-                transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
-            }
-            50% {
-                transform: perspective(1000px) rotateX(-5deg) rotateY(-5deg);
-            }
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5), 
+                        -10px -10px 30px rgba(255, 255, 255, 0.2);
+            width: 250px;
         }
 
         .digital-clock {
-            font-size: 90px;
+            font-size: 50px;
             margin-bottom: 20px;
             color: #fbc2eb;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 
                          0 0 20px rgba(255, 255, 255, 0.6);
         }
 
         .countdown-container {
-            font-size: 30px;
+            font-size: 20px;
             color: #fbc2eb;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
         }
 
         .time-remaining {
-            font-size: 26px;
+            font-size: 18px;
             color: #ffcccb;
             margin-top: 10px;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            animation: pulseText 1.5s infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            }
+            50% {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+            }
+        }
+
+        .schedule-box {
+            text-align: center;
+            background: linear-gradient(145deg, #2a5298, #1e3c72);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5), 
+                        -10px -10px 30px rgba(255, 255, 255, 0.2);
+            width: 300px;
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        .schedule-box table {
+            width: 100%;
+            border-collapse: collapse;
+            color: white;
+            font-size: 18px;
+        }
+
+        .schedule-box th, .schedule-box td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ffffff;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            width: 20px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            animation: float 10s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(-100%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
         }
 
         .marquee-container {
@@ -130,16 +172,13 @@
             bottom: 0;
             width: 100%;
             background: linear-gradient(90deg, #1e3c72, #2a5298);
-            padding: 20px 0;
+            padding: 15px 0;
             overflow: hidden;
         }
 
         .marquee {
             display: inline-block;
             white-space: nowrap;
-            font-size: 24px;
-            color: #fbc2eb;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             animation: scrollReverse 25s linear infinite;
         }
 
@@ -147,9 +186,23 @@
             from { transform: translateX(-100%); }
             to { transform: translateX(100%); }
         }
+
+        .marquee span {
+            font-size: 18px;
+            color: #fbc2eb;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
+    <div class="floating-shapes">
+        <div class="shape" style="left: 10%; animation-duration: 8s;"></div>
+        <div class="shape" style="left: 30%; animation-duration: 12s;"></div>
+        <div class="shape" style="left: 50%; animation-duration: 10s;"></div>
+        <div class="shape" style="left: 70%; animation-duration: 14s;"></div>
+        <div class="shape" style="left: 90%; animation-duration: 9s;"></div>
+    </div>
+
     <div class="header">
         <div class="logo-container">
             <img src="https://d.top4top.io/p_32865jkv41.png" alt="شعار المدرسة">
@@ -169,80 +222,78 @@
         </div>
 
         <div class="box countdown-container" id="countdown">
-            تدشين المشروع بعد: <br> <span id="countdown-days">0 يوم</span> <br> <span id="countdown-hours">0 ساعة</span> <br> <span id="countdown-minutes">0 دقيقة</span>
+            تدشين المشروع بعد: 
+            <div>00 يوم</div>
+            <div>00 ساعة</div>
+            <div>00 دقيقة</div>
         </div>
+    </div>
+
+    <div class="schedule-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>الحصة</th>
+                    <th>التوقيت</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>الأولى</td><td>7:30 - 8:10</td></tr>
+                <tr><td>الثانية</td><td>8:15 - 8:55</td></tr>
+                <tr><td>الثالثة</td><td>9:00 - 9:40</td></tr>
+                <tr><td>الرابعة</td><td>9:50 - 10:30</td></tr>
+                <tr><td>الخامسة</td><td>10:35 - 11:15</td></tr>
+                <tr><td>السادسة</td><td>11:20 - 12:00</td></tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="marquee-container">
         <div class="marquee">
-            📚 مشروع الصف الذكي | سيتم تدشين الشاشات التفاعلية كتجربة أولية في الصف التاسع/4 والصف الثامن/4 | ترقبوا المزيد! 📖
+            <span>📚 مشروع الصف الذكي | سيتم تدشين الشاشات التفاعلية كتجربة أولية في الصف التاسع/4 والصف الثامن/4 | ترقبوا المزيد! 📖</span>
         </div>
     </div>
 
     <script>
-        const schedule = [
-            { start: '07:10', end: '07:25', name: 'طابور الصباح' },
-            { start: '07:25', end: '08:05', name: 'الحصة الأولى' },
-            { start: '08:10', end: '08:50', name: 'الحصة الثانية' },
-            { start: '08:55', end: '09:35', name: 'الحصة الثالثة' },
-            { start: '09:40', end: '10:20', name: 'الحصة الرابعة' },
-            { start: '10:25', end: '11:05', name: 'الحصة الخامسة' },
-            { start: '11:10', end: '11:50', name: 'الحصة السادسة' },
-            { start: '11:55', end: '12:35', name: 'الحصة السابعة' },
-            { start: '12:40', end: '01:20', name: 'الحصة الثامنة' }
-        ];
-
         function updateClock() {
             const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
+            let hours = now.getHours();
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
+            hours = hours % 12 || 12;
             document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
         }
 
-        function updateSchedule() {
-            const now = new Date();
-            const currentTime = now.getHours() * 60 + now.getMinutes();
-
-            let currentClass = 'خارج توقيت العمل';
-            let remainingTime = '00 دقيقة';
-
-            schedule.forEach(slot => {
-                const [startHours, startMinutes] = slot.start.split(':').map(Number);
-                const [endHours, endMinutes] = slot.end.split(':').map(Number);
-                const startTime = startHours * 60 + startMinutes;
-                const endTime = endHours * 60 + endMinutes;
-
-                if (currentTime >= startTime && currentTime < endTime) {
-                    currentClass = slot.name;
-                    remainingTime = `${endTime - currentTime} دقيقة`;
-                }
-            });
-
-            document.getElementById('current-class').textContent = currentClass;
-            document.getElementById('time-remaining').textContent = `الوقت المتبقي: ${remainingTime}`;
-        }
-
         function updateCountdown() {
-            const eventTime = new Date();
-            eventTime.setDate(eventTime.getDate() + 1);
-            eventTime.setHours(7, 30, 0, 0);
-
+            const eventDate = new Date();
+            eventDate.setDate(eventDate.getDate() + 1);
+            eventDate.setHours(7, 30, 0, 0);
             const now = new Date();
-            const diff = eventTime - now;
+            const diff = eventDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').textContent = 'تم تدشين المشروع!';
+                return;
+            }
 
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById('countdown-days').textContent = `${days} يوم`;
-            document.getElementById('countdown-hours').textContent = `${hours} ساعة`;
-            document.getElementById('countdown-minutes').textContent = `${minutes} دقيقة`;
+            document.getElementById('countdown').innerHTML = `
+                <div>${days} يوم</div>
+                <div>${hours} ساعة</div>
+                <div>${minutes} دقيقة</div>
+                <div>${seconds} ثانية</div>
+            `;
         }
 
         setInterval(updateClock, 1000);
-        setInterval(updateSchedule, 1000);
         setInterval(updateCountdown, 1000);
+
+        updateClock();
+        updateCountdown();
     </script>
 </body>
 </html>
